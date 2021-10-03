@@ -2,7 +2,7 @@
 No bloco em que se fez presente esse projeto, tive o meu primeiro contato com banco de dados não relacionais. Para o estudo dessa família de banco de dados, foi adotado o MongoDB, por ser no mercado de trabalho, o mais utilizado dessa categoria.
 
 Esse projeto teve como objetivo, desenvolver uma série de queries para executar ações no banco de dados **dataFlights** fornecido.
-As principais ações executadas nesse projeto encontram-se descritas no tópico abaixo. 
+As principais ações executadas nesse projeto, encontram-se descritas no tópico abaixo. 
 
 ---
 
