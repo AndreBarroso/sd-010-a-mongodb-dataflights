@@ -1,24 +1,34 @@
 # Boas vindas ao repositório do projeto Data Flights!
-No bloco em que se fez presente esse projeto, tive o meu primeiro contato com banco de dados não relacionais. Para o estudo dessa família de banco de dados, foi adotado o MongoDB, por ser no mercado de trabalho, o mais utilizado dessa categoria.
+No bloco finalizado com esse projeto, dei proceguimento ao meu apendizado de MongoDB. Nesse bloco pude aprender as principais ferramentas para fazer updates simples e complexos em coleções já existentes em um banco de dados do MongoDB
 
 Esse projeto teve como objetivo, desenvolver uma série de queries para executar ações no banco de dados **dataFlights** fornecido.
-As principais ações executadas nesse projeto, encontram-se descritas no tópico abaixo. 
+As principais ações executadas e lições aprendidas nesse projeto, encontram-se descritas nos tópico abaixos. 
 
 ---
 
 ## Habilidades
 
-- Buscar documentos no banco
-- Usar filtros na busca
-- Deletar documentos conforme filtro
-- Contar documentos compreendidos nos filtros pedidos
-- Inserir documentos no banco
+ * Utilizar o método `updateOne()` e `updateMany()`
+ * Utilizar os operadores `$set`, `$mul`, `$inc`, `$min`, `$max` e `$currentDate`
+ * Renomear campos e remover campos
+ * Incorporar dados aos documentos através de arrays
+ * Utilizar os operadores `$pop`, `$pull` e `$push`
+ * Utilizar o operador `$addToSet`
+ * Utilizar os operadores `$each`, `$slice` e `$sort`
+ * Utilizar o operador `$all` para filtrar documentos
+ * Utilizar o operador `$elemMatch` para filtrar documentos
+ * Utilizar o operador `$size` para filtrar documentos pelo tamanho de arrays
+ * Utilizar o operador `$expr` para criar expressões de agregação
+ * Utilizar expressões regulares e o operador `$regex` para buscar documentos
+ * Utilizar o índice textual e o operador `$text`
+ * Utilizar o operador `$mod`
 
 ---
 
 ## Instruções para executar as queries em seu próprio computador 
 
-Cada query está nomeada como desafio1..28 e segue a numeração da lista de requisitos abaixo.
+Cada query está nomeada como desafio1..27 e segue a numeração da lista de requisitos abaixo.
+Todas elas estão na pasta challenges.
 
 1. Para executar as queries é necessário ter o MongoDB instalado.
 Para informações sobre como instalar [clique aqui](https://docs.mongodb.com/manual/installation/).
@@ -35,12 +45,12 @@ cd projeto-andre
 
 3. Faça o clone do projeto executando o comando a seguir:
 ```bash
-git clone https://github.com/AndreBarroso/sd-010-a-mongodb-dataflights.git
+https://github.com/AndreBarroso/sd-010-a-mongodb-commerce.git
 ```
 
 4. Acesse a pasta criada executando o comando a seguir:
 ```bash
-cd sd-010-a-mongodb-dataflights
+cd sd-010-a-mongodb-commerce.git
 ```
 
 5. Instale as dependências do projeto executando:
@@ -50,11 +60,11 @@ npm install;
 
 6. Na raiz do diretório do projeto, execute o seguinte comando que fará a restauração da base de dados `dataFlights`:
     ```sh
-    DBNAME=dataFlights ./scripts/resetdb.sh assets
+    DBNAME=commerce ./scripts/resetdb.sh assets/produtos
     ```
-  * A execução desse script criará um banco de dados chamado `dataFlights` e importará os dados para a coleção `voos`.
+  * A execução desse script criará um banco de dados chamado `commerce` e importará os dados para a coleção `produtos`.
 
-7. Seguindo os passo acima, você pode executar as queries da lista abaixo em seu MongoDB. 
+7. Seguindo os passos acima, você pode executar as queries da lista abaixo em seu MongoDB. 
 
 Obs. Nesse projeto encontram-se também os testes unitários para cada uma das queries. O comando do terminal para a execução dos testes é:
 ```sh
@@ -73,74 +83,169 @@ Para dúvidas, entre em contato comigo pelo email: andrefb.eng1@gmail.com .
 
 Abaixo encontra-se a lista de requisitos solicitados para a elaboração do projeto.
 
-#### 1 - Retorne a quantidade de documentos inseridos na coleção `voos`.
+### 1 - Inclua o campo `criadoPor` em todos os documentos, colocando `"Ronald McDonald"` no valor desse campo.
 
-#### 2 - Retorne os 10 primeiros documentos com voos da empresa `AZUL`.
+Para isso, escreva no arquivo `desafio1.js` duas queries, **nesta ordem**:
 
-#### 3 - Retorne a quantidade de voos da empresa `AZUL`.
+1. Crie uma query que adicione o campo `criadoPor` em todos os documentos, colocando `"Ronald McDonald"` no valor desse campo.
 
-#### 4 - Retorne a quantidade de voos da empresa `GOL`.
+2. Crie uma query que retorne o `nome` e `criadoPor` de todos os produtos.
 
-#### 5 - Retorne o `vooId` do décimo ao décimo segundo documento da coleção `voos`.
+### 2 - Inclua o campo `valorUnitario` em todos os documentos em que esse campo não existe e atribua a ele o valor `"0.00"`, com o tipo `NumberDecimal`.
 
-#### 6 - Retorne apenas os campos `empresa.sigla`, `empresa.nome` e `passageiros` do voo com o campo `vooId` igual a `756807`.
+Para isso, escreva no arquivo `desafio2.js` duas queries, **nesta ordem**:
 
-#### 7 - Retorne a quantidade de voos em que o ano seja menor do que `2017`.
+1. Crie uma query que adicione o campo `valorUnitario` em todos os documentos em que esse campo não existe e atribua a ele o valor `"0.00"`, com o tipo `NumberDecimal`.
 
-#### 8 - Retorne a quantidade de voos em que o ano seja maior do que `2016`.
+2. Crie uma query que retorne o `nome` e `valorUnitario` de todos os produtos.
 
-#### 9 - Retorne a quantidade de voos entre os anos de `2017` e `2018`.
+### 3 - Adicione o campo `avaliacao` em todos os documentos da coleção e efetue alterações nesse campo.
 
-#### 10 - Retorne apenas os **10** primeiros documentos com voos da empresa `GOL` do ano de `2017`. Exiba apenas os campos `vooId`, `empresa.nome`, `aeroportoOrigem.nome`, `aeroportoDestino.nome`, `mes` e `ano`.
+Para isso, escreva no arquivo `desafio3.js` quatro queries, **nesta ordem**:
 
-#### 11 - Retorne a quantidade de documentos em que o campo `aeroportoDestino.pais` não seja igual a `ESTADOS UNIDOS`.
+1. Crie uma query que inclua o campo `avaliacao` do tipo `NumberInt` e com o valor `0` em todos os documentos da coleção.
 
-#### 12 - Retorne a quantidade de documentos em que o campo `aeroportoDestino.pais` seja igual a `BRASIL`, `ARGENTINA` ou `CHILE`.
+2. Crie uma query que incremente o valor do campo `avaliacao` em `5` em todos os sanduíches de carne do tipo `bovino`. Dica: utilize como filtro o campo `tags`.
 
-#### 13 - Retorne a quantidade de documentos em que o campo `aeroportoDestino.continente` não seja igual a `EUROPA`, `ÁSIA` e `OCEANIA`.
+3. Crie uma query que incremente o valor do campo `avaliacao` em `3` em todos os sanduíches de `ave`.
 
-#### 14 - Retorne o total de voos em que o país de origem não seja `BRASIL`.
+4. Crie uma query que retorne o `nome` e `avaliacao` de todos os sanduíches.
 
-#### 15 - Retorne o total de voos com mais de 20 `decolagens`.
+### 4 - Atribua a data corrente ao campo `ultimaModificacao` no sanduíche `Big Mac`.
 
-#### 16 - Retorne o total de voos em que o campo `natureza` possui o valor `Internacional`.
+Para isso, escreva no arquivo `desafio4.js` duas queries, **nesta ordem**:
 
-#### 17 - Retorne o total de voos em que o campo `natureza` possui o valor `Doméstica`.
+1. Crie uma query que atribua a data corrente ao campo `ultimaModificacao` no sanduíche `Big Mac`. Para a data corrente faça uso do tipo `Date`.
 
-#### 18 - Retorne o `vooId`, `mes` e `ano` do primeiro voo com mais de `7000` passageiros pagos.
+2. Crie uma query que retorne o `nome` de todos os documentos em que o campo `ultimaModificacao` existe.
 
-#### 19 - Retorne o `vooId` do primeiro voo em que o campo `litrosCombustivel` exista.
+### 5 - Adicione `ketchup` aos `ingredientes` para todos os sanduíches menos o `McChicken`, garantindo que não haja duplicidade nos `ingredientes`.
 
-#### 20 - Retorne o `vooId` do primeiro voo em que o campo `rtk` não exista.
+Para isso, escreva no arquivo `desafio5.js` duas queries, **nesta ordem**:
 
-#### 21 - Retorne o `vooId` do primeiro voo em que o campo `litrosCombustivel` seja maior ou igual a `1000`.
+1. Crie uma query que adicione `ketchup` aos `ingredientes` para todos os sanduíches menos o `McChicken`, garantindo que não haja duplicidade nos `ingredientes`.
 
-#### 22 - Retorne o `vooId` do primeiro voo em que a empresa seja `DELTA AIRLINES` ou `AMERICAN AIRLINES`, a sigla do aeroporto de origem seja `SBGR` e a sigla do aeroporto de destino seja `KJFK`.
+2. Crie uma query que retorne o `nome` e `ingredientes` de todos os documentos.
 
-#### 23 - Retorne o `vooId` e `litrosCombustivel` do primeiro voo em que o campo `litrosCombustivel` **não seja maior do que** `1000` e o campo `litrosCombustivel` exista.
+### 6 - Inclua `bacon` no final da lista de `ingredientes` dos sanduíches `Big Mac` e `Quarteirão com Queijo`.
 
-#### 24 - Retorne o `vooId`, `empresa.nome` e `litrosCombustivel` do primeiro voo em que `litrosCombustivel` **não seja maior do que** `600` **e** a empresa **não seja** `GOL` **ou** `AZUL`, **e** o campo `litrosCombustivel` exista.
+Para isso, escreva no arquivo `desafio6.js` duas queries, **nesta ordem**:
 
-#### 25 - Remova todos os voos da empresa `AZUL` em que a quantidade de combustível seja menor do que `400`. Informe a quantidade de documentos removidos.
+1. Crie uma query que faça a inclusão de `bacon` no final da lista de `ingredientes` dos sanduíches `Big Mac` e `Quarteirão com Queijo`.
 
-#### 26 - Remova todos os voos da empresa `GOL` em que a quantidade de passageiros pagos esteja entre `5` e `10`, incluindo os casos em que a quantidade é `5` e `10`. Informe a quantidade de documentos removidos.
+2. Crie uma query que retorne o `nome` e `ingredientes` de todos os documentos.
 
-#### 27 - Retorne a quantidade total de voos de natureza `Doméstica` que a empresa `PASSAREDO` possui, via uso de uma nova coleção chamada `resumoVoos`.
+### 7 - Remova o item `cebola` de todos os sanduíches.
 
-Ou seja, a coleção `resumoVoos` conterá documentos onde cada um indica para cada empresa a quantidade total de voos que ela possui de natureza `Doméstica`.
+Para isso, escreva no arquivo `desafio7.js` duas queries, **nesta ordem**:
 
-Para isso, escreva no arquivo `desafio27.js` duas queries, **nesta ordem**:
+1. Crie uma query que faça a remoção do item `cebola` em todos os sanduíches.
 
-1. Conte quantos voos da empresa `PASSAREDO` cujo campo `natureza` possua valor igual a `Doméstica` e crie uma query que insira na coleção `resumoVoos` um documento com os campos: `empresa` (nome da empresa) e `totalVoosDomesticos` (o total retornado anteriormente).
+2. Crie uma query que retorne o `nome` e `ingredientes` de todos os documentos.
 
-2. Em uma segunda query, retorne a `empresa` e o `totalVoosDomesticos` do primeiro documento presente na coleção `resumoVoos` em que a empresa seja `PASSAREDO`.
+### 8 - Remova o **primeiro** `ingrediente` do sanduíche `Quarteirão com Queijo`.
 
-#### 28 - Retorne a quantidade total de voos de natureza `Doméstica` que a empresa `LATAM AIRLINES BRASIL` possui, via uso de uma nova coleção chamada `resumoVoos`.
+Para isso, escreva no arquivo `desafio8.js` duas queries, **nesta ordem**:
 
-Para isso, escreva no arquivo `desafio28.js` duas queries, **nesta ordem**:
+1. Crie uma query que faça a remoção do **primeiro** `ingrediente` no sanduíche `Quarteirão com Queijo`.
 
-1. Conte quantos voos da empresa `LATAM AIRLINES BRASIL` cujo campo `natureza` possua valor igual a `Doméstica` e crie uma query que insira na coleção `resumoVoos` um documento com os campos: `empresa` (nome da empresa) e `totalVoosDomesticos` (o total retornado anteriormente).
+2. Crie uma query que retorne o `nome` e `ingredientes` de todos os documentos.
 
-2. Em uma segunda query, retorne a `empresa` e o `totalVoosDomesticos` do primeiro documento presente na coleção `resumoVoos` em que a empresa seja `LATAM AIRLINES BRASIL`.
+### 9 - Remova o **último** `ingrediente` do sanduíche `Cheddar McMelt`.
+
+Para isso, escreva no arquivo `desafio9.js` duas queries, **nesta ordem**:
+
+1. Crie uma query que faça a remoção do **último** `ingrediente` no sanduíche `Cheddar McMelt`.
+
+2. Crie uma query que retorne o `nome` e `ingredientes` de todos os documentos.
+
+### 10 - Adicione a quantidade de vendas dos sanduíches por dia da semana.
+
+Para isso, escreva no arquivo `desafio10.js` quatro queries, **nesta ordem**:
+
+1. Crie uma query que inclua um _array_ com sete posições em todos os sanduíches. Cada uma delas representará um dia da semana, e cada posição iniciará em `0`. O _array_ deve se parecer como abaixo:
+   ```json
+   "vendasPorDia": [0, 0, 0, 0, 0, 0, 0]
+   ```
+
+- O primeiro item desse _array_ representa as vendas no **domingo**, o segundo item representa as vendas na **segunda-feira**, e assim até chegar ao último item, que representa as vendas no **sábado**.
+
+2. Crie uma query que incremente as vendas de `Big Mac` às **quartas-feiras** em `60`.
+
+3. Crie uma query que incremente as vendas de todos os sanduíches de carne do tipo `bovino` e `pão` aos **sábados** em `120`.
+
+4. Crie uma query que retorne o `nome` e `vendasPorDia` de todos os documentos.
+
+### 11 - Insira os elementos `combo` e `tasty` no _array_ `tags` de todos os sanduíches e aproveite para deixar os elementos em ordem alfabética ascendente.
+
+Para isso, escreva no arquivo `desafio11.js` duas queries, **nesta ordem**:
+
+1. Crie uma query que faça tanto a inserção dos elementos `combo` e `tasty` no _array_ `tags` de todos os sanduíches quanto a ordenação dos elementos de `tags` em ordem alfabética ascendente.
+
+2. Crie uma query que retorne o `nome` e `tags` de todos os documentos.
+
+### 12 - Ordene em todos os documentos os elementos do _array_ `valoresNutricionais` pelo campo `percentual` de forma descendente.
+
+Para isso, escreva no arquivo `desafio12.js` duas queries, **nesta ordem**:
+
+1. Crie uma query que faça em todos os documentos a ordenação dos elementos do _array_ `valoresNutricionais` pelo campo `percentual` de forma descendente. Dica: mesmo sem adicionar nenhum novo elemento, para essa operação é necessário utilizar também o modificador `$each`.
+
+2. Crie uma query que retorne o `nome` e `valoresNutricionais` de todos os documentos.
+
+### 13 - Adicione o elemento `muito sódio` ao final do _array_ `tags` nos produtos em que o `percentual` de `sódio` seja maior ou igual a `40`.
+
+Para isso, escreva no arquivo `desafio13.js` duas queries, **nesta ordem**:
+
+1. Crie uma query que faça a adição do elemento `muito sódio` ao final do _array_ `tags` nos produtos em que o `percentual` de `sódio` seja maior ou igual a `40`.
+
+2. Crie uma query que retorne o `nome` e `tags` de todos os documentos.
+
+### 14 - Adicione o elemento `contém sódio` ao final do _array_ `tags` nos produtos em que o `percentual` de `sódio` seja maior do que `20` e menor do que `40`.
+
+Para isso, escreva no arquivo `desafio14.js` duas queries, **nesta ordem**:
+
+1. Crie uma query que faça a adição do elemento `contém sódio` ao final do _array_ `tags` nos produtos em que o `percentual` de `sódio` seja maior do que `20` e menor do que `40`.
+
+2. Crie uma query que retorne o `nome` e `tags` de todos os documentos.
+
+### 15 - Conte quantos produtos contêm `Mc` no nome, sem considerar letras maiúsculas ou minúsculas.
+
+### 16 - Conte quantos produtos têm `4` ingredientes.
+
+### 17 - Conte quantos documentos contêm as palavras `frango` ou `hamburguer` utilizando o operador `$text`.
+
+Para isso, escreva no arquivo `desafio17.js` duas queries, **nesta ordem**:
+
+1. Crie uma query que faça a criação de um índice do tipo `text` no campo `descricao` com o idioma padrão `portuguese`.
+
+2. Crie uma query que retorne a quantidade de documentos que contêm as palavras `frango` ou `hamburguer` utilizando o operador `$text`.
+
+### 18 - Conte quantos documentos contêm a **expressão** `feito com` utilizando o operador `$text`.
+
+Para isso, escreva no arquivo `desafio18.js` duas queries, **nesta ordem**:
+
+1. Crie uma query que faça a criação de um índice do tipo `text` no campo `descricao` com o idioma padrão `portuguese`.
+
+2. Crie uma query que retorne a quantidade de documentos que contêm a **expressão** `feito com` utilizando o operador `$text`.
+
+### 19 - Renomeie o campo `descricao` para `descricaoSite` em todos os documentos.
+
+Para isso, escreva no arquivo `desafio19.js` duas queries, **nesta ordem**:
+
+1. Crie uma query que faça a renomeação do campo `descricao` para `descricaoSite` em todos os documentos.
+
+2. Crie uma query que retorne o `nome`, `descricao` e `descricaoSite` de todos os documentos.
+
+### 20 - Remova o campo `curtidas` do item `Big Mac`.
+
+Para isso, escreva no arquivo `desafio20.js` duas queries, **nesta ordem**:
+
+1. Crie uma query que faça a remoção do campo `curtidas` do item `Big Mac`.
+
+2. Crie uma query que retorne o `nome` e `curtidas` de todos os documentos.
+
+### 21 - Retorne o `nome` dos sanduíches em que o número de `curtidas` é maior que o número de sanduíches `vendidos`.
+
+### 22 - Retorne o `nome` e a quantidade de vendas (`vendidos`) dos sanduíches em que o número de vendas é múltiplo de `5`.
 
 ---
